@@ -14,5 +14,3 @@ if __name__ == "__main__":
     # Scale data
     scale = Preprocess()
     X_train_scaled, X_test_scaled = scale.scale_data(X_train, X_test)
-    
-    print(X_train_scaled)
