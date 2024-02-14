@@ -1,2 +1,12 @@
 # Virtual environment
 .venv
+
+# Distribution / packaging
+heart_attack_prediction.egg-info
+.python-version
+
+# Data
+dataset
+
+# Notebooks
+notebooks
