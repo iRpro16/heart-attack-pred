@@ -7,15 +7,12 @@ from src.logger import logging
 
 class MyModel():
     
-    def __init__(self):
-        pass
-    
     # Get model using Sequential API
     def get_model(self):
         logging.info("Initialize model")
         self.model = Sequential(
-            [
-                Dense(256, activation='relu', kernel_regularizer=l2(0.001)),
+            [   
+                Dense(256, activation='relu', kernel_regularizer=l2(0.001), input_shape = (13,)),
                 Dense(128, activation='relu', kernel_regularizer=l2(0.001)),
                 Dense(64, activation='relu', kernel_regularizer=l2(0.001)),
                 Dense(12, activation='relu', kernel_regularizer=l2(0.001)),
@@ -27,6 +24,7 @@ class MyModel():
             optimizer=Adam(0.001),
             loss = 'sparse_categorical_crossentropy'
         )
+        logging.info("Added input shape")
     
     # Fit model to training and testing set
     def fit_model(self, x_train, y_train, x_test, y_test):
@@ -37,6 +35,9 @@ class MyModel():
             epochs=50,
             verbose=0
         )
+        
+        logging.info("Save model")
+        self.model.save('models/my_model.keras')
         
         # Get prediction
         self.predict = self.model.predict(x_test)
