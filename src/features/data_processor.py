@@ -20,4 +20,6 @@ class Preprocess:
             obj = self.scaler,
             file_path=self.scaler_config
         )
+      
+        
         return X_train_scaled, X_test_scaled
