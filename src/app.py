@@ -13,13 +13,13 @@ new_model.load_weights('models/my_model.weights.h5')
 # Scaler
 scaler = load_pkl(scaler_file_path)
 
-array = np.array([[69,0,140,239,0,1,151,0,1.8,2,2,2,0.8]])
+array = [[69,0,140,239,0,1,151,0,1.8,2,2,2,0.8]]
 array_scaled = scaler.transform(array)
 
-prediction = new_model.predict(array_scaled)
-pred_max = np.argmax(prediction, axis=1)
+predictions = new_model.predict(array_scaled)
+pred_max = np.argmax(predictions, axis=1)
 
-print(prediction)
+print(predictions)
 print(pred_max)
 
 

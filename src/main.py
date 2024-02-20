@@ -2,6 +2,7 @@ from src.data.make_dataset import Dataset
 from src.features.data_processor import Preprocess
 from src.model.train_model import MyModel
 from src.pipeline.utils import evaluate_model, print_metrics
+from keras.optimizers import Adam
 from src.logger import logging
 import numpy as np
 
@@ -22,15 +23,16 @@ if __name__ == "__main__":
     
     # Get model
     model = MyModel()
-    model.get_model()
-    history, prediction = model.fit_model(X_train_scaled, y_train, X_test_scaled, y_test)
-    pred_max = np.argmax(prediction, axis=1)
     
-    logging.info("Save model and weights on main.py")
-        
-    # Save model /weights
-    model.model.save('models/my_model.keras')
-    model.model.save_weights('models/my_model.weights.h5')
+    # Compile
+    model.compile_model()
+    
+    # Fit
+    history = model.fit_model(X_train_scaled, y_train, X_test_scaled, y_test)
+    
+    # Predict
+    prediction = model.predict_model(X_test_scaled)
+    pred_max = np.argmax(prediction, axis=1)
     
     # Store metrics
     ac_score, pr_score = evaluate_model(y_test, pred_max)
@@ -43,4 +45,3 @@ if __name__ == "__main__":
     print_metrics(ac_score, pr_score)
     print(f'Loss:{loss_train:0.2f}')
     print(f'Val-loss:{loss_val:0.2f}')
-    
