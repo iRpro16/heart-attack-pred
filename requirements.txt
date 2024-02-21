@@ -7,4 +7,5 @@ tensorflow
 scikeras
 pyyaml
 h5py
+xgboost
 #-e .
