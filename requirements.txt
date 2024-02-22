@@ -8,4 +8,5 @@ scikeras
 pyyaml
 h5py
 xgboost
+streamlit
 #-e .
